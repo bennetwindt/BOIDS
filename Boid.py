@@ -235,13 +235,9 @@ class Boid(pygame.sprite.Sprite):
                         
                         target=pygame.math.Vector2(targetx,targety)                       
                         
-        if self in leaders and Room == True:
-            new_vector = n*self.noise() + D*self.direct() + R*self.vrep()
-        elif self in informed:
+        if self in informed:
             desired_vector = C*self.vcoh()+R*self.vrep()+A*self.val()+n*self.noise()+B*self.avoid_borders() + Dinformed*(target-self.pos()).normalize() + S*L/(N+L)*self.leader()
             new_vector = self.vector + desired_vector
-        elif self.stop == True:
-            new_vector = zero
         else:
             desired_vector = C*self.vcoh()+R*self.vrep()+A*self.val()+n*self.noise()+B*self.avoid_borders() + D*self.direct() + S*L/(N+L)*self.leader()
             new_vector = self.vector + desired_vector
