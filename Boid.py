@@ -236,10 +236,10 @@ class Boid(pygame.sprite.Sprite):
                         target=pygame.math.Vector2(targetx,targety)                       
                         
         if self in informed:
-            desired_vector = C*self.vcoh()+R*self.vrep()+A*self.val()+n*self.noise()+B*self.avoid_borders() + Dinformed*(target-self.pos()).normalize() + S*L/(N+L)*self.leader()
+            desired_vector = C*self.vcoh()+R*self.vrep()+A*self.val()+n*self.noise() + Dinformed*(target-self.pos()).normalize() + S*L/(N+L)*self.leader()
             new_vector = self.vector + desired_vector
         else:
-            desired_vector = C*self.vcoh()+R*self.vrep()+A*self.val()+n*self.noise()+B*self.avoid_borders() + D*self.direct() + S*L/(N+L)*self.leader()
+            desired_vector = C*self.vcoh()+R*self.vrep()+A*self.val()+n*self.noise() + D*self.direct() + S*L/(N+L)*self.leader()
             new_vector = self.vector + desired_vector
         
         if new_vector.length() == 0:
